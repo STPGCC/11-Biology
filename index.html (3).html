@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mrs Cole’s 11 Bio Website 2027 | St Peter’s Diploma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ---------- STP brand tokens ---------- */
+:root{
+  --navy:#04142f; --navy-2:#0b2350; --red:#d2232a; --red-dark:#a8141b;
+  --blue:#0277bd; --ivory:#f3f0e8;
+  --bg:#f6f5f1; --surface:#ffffff; --ink:#14203a; --muted:#56607a; --line:#d9dce4;
+  --card-front:#ffffff; --card-back:#04142f; --card-back-ink:#f3f0e8;
+  --ok:#1d7a43; --bad:#b3261e;
+  --display:"Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --body:"Merriweather", Georgia, "Times New Roman", serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#070f22; --surface:#0f1b36; --ink:#e9ecf3; --muted:#a7b0c6; --line:#24335a;
+    --card-front:#13224a; --card-back:#d2232a; --card-back-ink:#fff;
+    --ok:#5fd18f; --bad:#ff8a80;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#070f22; --surface:#0f1b36; --ink:#e9ecf3; --muted:#a7b0c6; --line:#24335a;
+  --card-front:#13224a; --card-back:#d2232a; --card-back-ink:#fff;
+  --ok:#5fd18f; --bad:#ff8a80;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.7}
+img{max-width:100%}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--blue)}
+
+/* ---------- Top bar (mirrors STP Diploma site) ---------- */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--blue);color:#fff}
+.topbar-inner{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:1rem;padding:.55rem 1rem}
+.brand{font-family:var(--display);font-weight:500;font-size:1.15rem;color:#fff;text-decoration:none;white-space:nowrap}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid rgba(255,255,255,.6);color:#fff;border-radius:4px;padding:.3rem .7rem;font:600 .9rem var(--display)}
+nav.main{margin-left:auto;display:flex;flex-wrap:wrap;gap:.15rem}
+nav.main a{color:#fff;text-decoration:none;font-family:var(--body);font-size:.92rem;padding:.45rem .7rem;border-bottom:4px solid transparent}
+nav.main a[aria-current="page"]{border-bottom-color:#fff}
+nav.main a:hover{background:rgba(255,255,255,.12)}
+@media (max-width:980px){
+  .menu-btn{display:block}
+  nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--blue);flex-direction:column;padding:.5rem 1rem 1rem}
+  nav.main.open{display:flex}
+}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.hero-inner{max-width:1240px;margin:0 auto;padding:3.5rem 1.25rem 3rem;display:grid;grid-template-columns:minmax(160px,300px) 1fr;gap:2.5rem;align-items:center}
+.crest{width:100%;max-width:300px;aspect-ratio:1/1.05;display:block}
+.crest img{width:100%;height:100%;object-fit:contain}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.4vw,4.2rem);line-height:1.02;margin:0 0 1rem;letter-spacing:-.01em}
+.hero h1 .yr{display:block;color:var(--red);font-size:.5em;letter-spacing:.02em;margin-top:.35rem}
+.hero p{max-width:56ch;color:#d4daea;margin:0 0 1.5rem}
+.motto{font-family:var(--body);font-style:italic;color:var(--ivory);opacity:.85;letter-spacing:.08em}
+.btn{display:inline-flex;align-items:center;gap:.4rem;font:700 .95rem var(--display);text-decoration:none;border-radius:4px;padding:.7rem 1.1rem;border:2px solid transparent;cursor:pointer}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-dark)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-row{display:flex;flex-wrap:wrap;gap:.6rem}
+@media (max-width:720px){.hero-inner{grid-template-columns:1fr;text-align:center;padding-top:2.25rem}.crest{margin:0 auto;max-width:180px}.hero p{margin-inline:auto}.btn-row{justify-content:center}}
+
+/* ---------- Page shells ---------- */
+main{max-width:1240px;margin:0 auto;padding:2.25rem 1.25rem 4rem}
+.page{display:none}
+.page.active{display:block}
+.page-head{display:flex;gap:1.25rem;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;border-bottom:4px solid var(--red);padding-bottom:1rem;margin-bottom:1.5rem}
+.page-head h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,3.6vw,2.6rem);margin:0;line-height:1.1}
+.page-head p{margin:.4rem 0 0;color:var(--muted);max-width:68ch}
+h3{font-family:var(--display);font-weight:700;font-size:1.3rem;margin:2rem 0 .75rem}
+h4{font-family:var(--display);font-weight:700;font-size:1.05rem;margin:1.25rem 0 .4rem}
+.prose{max-width:72ch}
+
+/* ---------- Sub-tabs ---------- */
+.tabs{display:flex;gap:.25rem;flex-wrap:wrap;margin-bottom:1.5rem;border-bottom:1px solid var(--line)}
+.tabs button{font:600 .95rem var(--display);background:none;border:none;color:var(--muted);padding:.7rem 1rem;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--red)}
+.tabs button:hover{color:var(--ink)}
+.panel{display:none}
+.panel.active{display:block}
+
+/* ---------- Home grid ---------- */
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:1rem}
+.tile{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-top:6px solid var(--navy);padding:1.25rem 1.25rem 1.1rem;border-radius:2px}
+.tile:hover{border-top-color:var(--red)}
+.tile h3{margin:0 0 .35rem;font-size:1.2rem}
+.tile p{margin:0;color:var(--muted);font-size:.92rem}
+.tile .meta{display:block;margin-top:.8rem;font:600 .8rem var(--display);color:var(--blue)}
+.tile.project{border-top-color:var(--red)}
+.callout{background:var(--surface);border-left:6px solid var(--blue);padding:1rem 1.25rem;margin:1.5rem 0;max-width:80ch}
+
+/* ---------- Flashcards ---------- */
+.fc-wrap{max-width:720px}
+.fc{perspective:1400px;cursor:pointer;height:300px}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;border-radius:6px;border:1px solid var(--line)}
+.fc-front{background:var(--card-front)}
+.fc-front .q{font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,3vw,1.8rem);line-height:1.25}
+.fc-back{background:var(--card-back);color:var(--card-back-ink);transform:rotateY(180deg);font-size:1.05rem}
+.fc-hint{position:absolute;bottom:.8rem;font:500 .78rem var(--display);opacity:.6}
+.fc-controls{display:flex;align-items:center;gap:.6rem;margin-top:1rem;flex-wrap:wrap}
+.fc-controls .count{font:600 .9rem var(--display);color:var(--muted);margin-right:auto}
+.small-btn{font:600 .88rem var(--display);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:.5rem .9rem;cursor:pointer}
+.small-btn:hover{border-color:var(--ink)}
+.small-btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+@media (prefers-reduced-motion:reduce){.fc-inner{transition:none}}
+
+/* ---------- Quiz ---------- */
+.quiz-q{background:var(--surface);border:1px solid var(--line);padding:1.1rem 1.25rem;margin-bottom:.9rem;max-width:860px;border-radius:2px}
+.quiz-q legend{font-family:var(--display);font-weight:700;padding:0;margin-bottom:.6rem;font-size:1rem}
+.quiz-q fieldset{border:none;margin:0;padding:0}
+.quiz-q label{display:flex;gap:.6rem;align-items:flex-start;padding:.35rem .5rem;border-radius:4px;cursor:pointer}
+.quiz-q label:hover{background:color-mix(in srgb,var(--blue) 8%,transparent)}
+.quiz-q input{margin-top:.45rem;accent-color:var(--red)}
+.quiz-q .why{display:none;margin-top:.6rem;padding-top:.6rem;border-top:1px dashed var(--line);font-size:.93rem}
+.quiz-q.marked .why{display:block}
+.quiz-q.right{border-left:6px solid var(--ok)}
+.quiz-q.wrong{border-left:6px solid var(--bad)}
+label.correct-opt{background:color-mix(in srgb,var(--ok) 15%,transparent)}
+.score{font:800 1.2rem var(--display);margin:1rem 0}
+
+/* ---------- Q&A ---------- */
+.qa-group{max-width:900px}
+details.qa{background:var(--surface);border:1px solid var(--line);margin-bottom:.6rem;border-radius:2px}
+details.qa summary{cursor:pointer;padding:.9rem 1.1rem;list-style:none;display:flex;gap:.75rem}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa summary .n{font:800 .95rem var(--display);color:var(--red);min-width:2.2rem}
+details.qa summary .reveal{margin-left:auto;font:600 .8rem var(--display);color:var(--blue);white-space:nowrap;align-self:center}
+details.qa[open] summary .reveal::before{content:"Hide answer"}
+details.qa:not([open]) summary .reveal::before{content:"Show answer"}
+details.qa .ans{padding:0 1.1rem 1rem 4.05rem;border-top:1px dashed var(--line);padding-top:.8rem}
+details.qa .ans ul{margin:.3rem 0;padding-left:1.2rem}
+.marks{font:600 .78rem var(--display);color:var(--muted)}
+
+/* ---------- Link lists ---------- */
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.75rem;max-width:1100px}
+.link-card{display:flex;flex-direction:column;gap:.2rem;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:.9rem 1rem;border-radius:2px}
+.link-card:hover{border-color:var(--blue)}
+.link-card strong{font-family:var(--display);font-size:.98rem}
+.link-card span{font-size:.86rem;color:var(--muted)}
+.kind{font:700 .72rem var(--display);color:#fff;background:var(--navy);padding:.1rem .45rem;border-radius:3px;align-self:flex-start;margin-bottom:.25rem}
+.kind.slides{background:#c55a11}.kind.doc{background:var(--blue)}.kind.video{background:var(--red)}.kind.paper{background:#4b3a8f}.kind.web{background:#2f6b4f}
+
+/* ---------- Disease table ---------- */
+.table-wrap{overflow-x:auto;max-width:100%;margin:1rem 0}
+table{border-collapse:collapse;min-width:760px;width:100%;background:var(--surface);font-size:.92rem}
+th,td{border:1px solid var(--line);padding:.6rem .75rem;text-align:left;vertical-align:top}
+th{background:var(--navy);color:#fff;font-family:var(--display);font-weight:700}
+
+footer{background:var(--navy);color:#c7cfe2;font-size:.85rem}
+footer .inner{max-width:1240px;margin:0 auto;padding:1.5rem 1.25rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
+footer a{color:#fff}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#home">Mrs Cole’s 11 Bio</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    <nav class="main" id="mainnav" aria-label="Main"></nav>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="crest" aria-hidden="true">
+      <!-- Upload the school crest to the repository as crest.png; the shield below shows until it is added -->
+      <img src="crest.png" alt="" onerror="this.parentNode.innerHTML=document.getElementById('crest-fallback').innerHTML">
+    </div>
+    <div>
+      <h1>Mrs Cole’s 11 Bio Website<span class="yr">2027 · St Peter’s Diploma: Biology</span></h1>
+      <p>Everything for Year 11 Biology in one place: flashcards, practice tests, worked answers, videos and class slides for every topic, plus support for both research tasks.</p>
+      <div class="btn-row">
+        <a class="btn btn-red" href="#genetics">Start revising</a>
+        <a class="btn btn-ghost" id="diploma-link" href="#" target="_blank" rel="noopener" hidden>STP Diploma Biology site</a>
+      </div>
+      <p class="motto" style="margin-top:1.5rem">Structa Saxo</p>
+    </div>
+  </div>
+</section>
+
+<template id="crest-fallback">
+  <svg viewBox="0 0 200 210" role="img" aria-label="St Peter’s shield">
+    <path d="M10 8h180v92c0 55-40 86-90 104C50 186 10 155 10 100Z" fill="#f3f0e8"/>
+    <path d="M20 18h160v82c0 47-34 74-80 90C54 174 20 147 20 100Z" fill="#d2232a"/>
+    <text x="100" y="112" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="46" fill="#fff">STP</text>
+  </svg>
+</template>
+
+<main id="main"></main>
+
+<footer>
+  <div class="inner">
+    <span>Mrs Cole’s 11 Bio Website 2027 · St Peter’s School, Cambridge</span>
+    <span>Class slides and notes open in Google Drive with your school login.</span>
+  </div>
+</footer>
+
+<script>
+/* ====================================================================
+   SETTINGS — edit these two lines
+   ==================================================================== */
+const DIPLOMA_SITE_URL = "";   // paste the STP Diploma: Biology Google Site link here to show the button
+const DRIVE = id => "https://drive.google.com/file/d/" + id + "/view";
+const GDOC = id => "https://docs.google.com/document/d/" + id + "/edit";
+const GSLIDES = id => "https://docs.google.com/presentation/d/" + id + "/edit";
+const YT = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
+
+/* ====================================================================
+   CONTENT
+   ==================================================================== */
+const TOPICS = [
+/* -------------------------------- GENETICS -------------------------------- */
+{
+ id:"genetics", nav:"Genetics", title:"Topic 1: Genetics",
+ blurb:"Variation, DNA structure and replication, mutations, inheritance, Punnett squares, test crosses, pedigrees and meiosis.",
+ flashcards:[
+  ["Gene","A section of DNA on a chromosome that codes for a particular protein, which produces a trait."],
+  ["Allele","An alternative form of the same gene, e.g. T (tall) and t (short)."],
+  ["Chromosome","A long molecule of DNA, coiled around proteins, that carries many genes."],
+  ["Nucleotide","The building block of DNA: a phosphate group, a deoxyribose sugar and one nitrogenous base."],
+  ["Base pairing rule","Adenine pairs with thymine (A–T) and cytosine pairs with guanine (C–G), held together by weak hydrogen bonds."],
+  ["Genotype","The combination of alleles an organism has for a gene, e.g. Tt."],
+  ["Phenotype","The observable characteristic produced by the genotype interacting with the environment, e.g. tall."],
+  ["Homozygous vs heterozygous","Homozygous: two identical alleles (TT or tt). Heterozygous: two different alleles (Tt)."],
+  ["Dominant vs recessive","A dominant allele is expressed whenever present. A recessive allele is only expressed when two copies are present."],
+  ["Mutation","A permanent change in the base sequence of DNA. It is the only source of new alleles."],
+  ["Gametic vs somatic mutation","Gametic mutations occur in sex cells and can be inherited. Somatic mutations occur in body cells and are not passed to offspring."],
+  ["DNA replication","Semi-conservative copying of DNA: helicase unzips the strands and DNA polymerase adds complementary nucleotides, so each new molecule has one old and one new strand."],
+  ["Meiosis","Cell division that produces four genetically different haploid gametes from one diploid cell."],
+  ["Crossing over","Non-sister chromatids of a homologous pair swap sections of DNA during prophase I of meiosis, creating new combinations of alleles."],
+  ["Independent assortment","Homologous pairs line up randomly at the equator in meiosis I, so each gamete receives a random mix of maternal and paternal chromosomes."],
+  ["Haploid vs diploid","Haploid (n) cells have one set of chromosomes (23 in human gametes). Diploid (2n) cells have two sets (46 in human body cells)."],
+  ["Test cross","Crossing an organism showing the dominant phenotype with a homozygous recessive organism to find out whether it is homozygous or heterozygous."],
+  ["Continuous vs discontinuous variation","Continuous: a range of values, usually many genes plus environment (height). Discontinuous: distinct categories, usually one gene (blood group)."],
+  ["Pedigree chart","A family tree that shows how a trait is inherited across generations. Squares are males, circles are females, shaded symbols are affected."]
+ ],
+ quiz:[
+  {q:"Which base pairs with cytosine in DNA?",o:["Adenine","Thymine","Guanine","Uracil"],a:2,w:"C pairs with G (three hydrogen bonds). Uracil only occurs in RNA."},
+  {q:"Two heterozygous tall plants (Tt × Tt) are crossed. What percentage of offspring are expected to be tall?",o:["25%","50%","75%","100%"],a:2,w:"TT, Tt, Tt, tt gives 3 tall : 1 short, so 75% tall."},
+  {q:"A black guinea pig is test crossed with a white (bb) guinea pig. Half the offspring are white. The black parent must be:",o:["BB","Bb","bb","Impossible to tell"],a:1,w:"White offspring need a b allele from each parent, so the black parent carried b: genotype Bb, giving a 1:1 ratio."},
+  {q:"Crossing over takes place during:",o:["Mitosis","Prophase I of meiosis","Fertilisation","DNA replication"],a:1,w:"Homologous chromosomes pair up in prophase I and non-sister chromatids exchange sections."},
+  {q:"Which is an example of continuous variation?",o:["Blood group","Tongue rolling","Height","Attached earlobes"],a:2,w:"Height shows a full range of values and is influenced by many genes and the environment."},
+  {q:"A mutation occurs in a skin cell. Which statement is correct?",o:["It will be passed to all offspring","It is a gametic mutation","It cannot be inherited","It always causes cancer"],a:2,w:"Skin cells are somatic cells; somatic mutations are not passed on to offspring."},
+  {q:"How many chromosomes are in a human gamete?",o:["23","46","92","22"],a:0,w:"Gametes are haploid, carrying one set of 23 chromosomes."},
+  {q:"DNA replication is called semi-conservative because:",o:["Only half the DNA is copied","Each new molecule contains one original and one new strand","It happens in half the cells","Half the bases are changed"],a:1,w:"Each original strand acts as a template, so every new double helix keeps one parental strand."},
+  {q:"Two parents without cystic fibrosis have a child with cystic fibrosis. What does this tell you?",o:["CF is dominant","Both parents are carriers (Ff)","Only the mother carries the allele","A new mutation must have occurred"],a:1,w:"CF is recessive; an affected child (ff) received one f from each unaffected parent, so both are heterozygous carriers."},
+  {q:"Which process does NOT create genetic variation?",o:["Mutation","Independent assortment","Mitosis","Random fertilisation"],a:2,w:"Mitosis produces genetically identical daughter cells."}
+ ],
+ short:[
+  ["Describe the structure of DNA.","DNA is a double helix made of two strands of nucleotides. Each nucleotide contains a phosphate, a deoxyribose sugar and a base. The sugar–phosphate backbone is on the outside and complementary bases (A–T, C–G) pair in the middle, held by hydrogen bonds.",3],
+  ["Explain the difference between a gene and an allele.","A gene is a section of DNA that codes for a protein/trait (e.g. the gene for flower colour). An allele is one version of that gene (e.g. purple or white). A person has two alleles for each gene, one from each parent.",2],
+  ["Outline the steps of DNA replication.","1. Helicase unwinds and unzips the double helix by breaking hydrogen bonds. 2. Free nucleotides pair with exposed bases on each template strand (A–T, C–G). 3. DNA polymerase joins the nucleotides into a new strand. 4. Two identical DNA molecules form, each with one old and one new strand.",3],
+  ["Explain why mutations are important for a species.","Mutations are the only source of new alleles. This increases genetic variation in the gene pool, so when the environment changes some individuals may have alleles that help them survive and reproduce. Without variation a species is more vulnerable to extinction.",2],
+  ["In pea plants purple flowers (P) are dominant to white (p). Give the expected genotype and phenotype ratios from Pp × pp.","Gametes P, p × p, p. Offspring: 2 Pp : 2 pp. Genotype ratio 1 Pp : 1 pp. Phenotype ratio 1 purple : 1 white (50% each).",3],
+  ["State two differences between mitosis and meiosis.","Mitosis produces 2 daughter cells; meiosis produces 4. Mitosis cells are diploid and genetically identical; meiosis cells are haploid and genetically different. Mitosis is for growth and repair; meiosis makes gametes. Meiosis has two divisions, mitosis one.",2],
+  ["What is the purpose of a pedigree chart and how can you tell a trait is recessive from one?","It shows how a trait passes through generations of a family. A trait is recessive if two unaffected parents have an affected child, because both parents must be carriers.",2]
+ ],
+ extended:[
+  {q:"Discuss how meiosis and fertilisation produce genetic variation in offspring. In your answer, explain crossing over, independent assortment and random fertilisation, and why variation is an advantage.",
+   a:"<p><b>Crossing over:</b> In prophase I, homologous chromosomes pair up and non-sister chromatids exchange sections of DNA at chiasmata. This produces chromatids carrying new combinations of alleles that were not present in either parent’s chromosomes.</p><p><b>Independent assortment:</b> In metaphase I, homologous pairs line up randomly at the equator. The orientation of each pair is independent of the others, so each gamete gets a random mix of maternal and paternal chromosomes. In humans this gives 2²³ (about 8.4 million) possible combinations without crossing over.</p><p><b>Random fertilisation:</b> Any sperm can fuse with any egg, so the number of possible genotypes is multiplied again (8.4 million × 8.4 million), making every zygote unique (except identical twins).</p><p><b>Why it matters:</b> Variation means individuals in a population differ. If the environment changes or a new disease appears, some individuals are likely to have alleles that let them survive and reproduce, passing those alleles on. This increases the long-term survival of the species compared with asexual reproduction, which produces clones.</p>",m:"A: describes processes · M: explains how each creates new allele combinations · E: links all three to survival of species"},
+  {q:"Cystic fibrosis is caused by a recessive allele (f). A couple are both carriers. Use a Punnett square to determine the probability of their child having CF, being a carrier, and being unaffected. Discuss why carriers do not show symptoms and how genetic testing could help this family.",
+   a:"<p><b>Cross:</b> Ff × Ff → gametes F, f from each parent. Offspring: FF, Ff, Ff, ff.</p><ul><li>Affected (ff): 1/4 = 25%</li><li>Carrier (Ff): 2/4 = 50%</li><li>Unaffected non-carrier (FF): 1/4 = 25%</li></ul><p><b>Why carriers are healthy:</b> One normal allele (F) produces enough functional CFTR protein for chloride ions to move across cell membranes, so mucus stays thin. Only ff individuals produce no working protein, so thick, sticky mucus builds up in the lungs and pancreas.</p><p><b>Genetic testing:</b> Carrier testing confirms each parent’s genotype; prenatal tests (e.g. CVS or amniocentesis) can test a fetus; newborn heel-prick screening allows early treatment. Each pregnancy is an independent event, so the 25% risk applies every time. Testing raises ethical issues such as privacy, anxiety and decisions about continuing a pregnancy, which genetic counsellors help families work through.</p>",m:"A: correct cross and ratios · M: explains carrier status using protein · E: discusses testing with probability and ethics"}
+ ],
+ videos:[
+  {t:"Amoeba Sisters: DNA structure and replication",u:YT("Amoeba Sisters DNA structure and replication")},
+  {t:"Amoeba Sisters: Alleles and genes",u:YT("Amoeba Sisters alleles and genes")},
+  {t:"Amoeba Sisters: Monohybrid crosses and Punnett squares",u:YT("Amoeba Sisters monohybrid crosses Punnett squares")},
+  {t:"Amoeba Sisters: Pedigrees",u:YT("Amoeba Sisters pedigrees")},
+  {t:"Amoeba Sisters: Meiosis",u:YT("Amoeba Sisters meiosis")},
+  {t:"Amoeba Sisters: Mutations",u:YT("Amoeba Sisters mutations")},
+  {t:"FuseSchool: Test crosses",u:YT("FuseSchool test cross genetics")},
+  {t:"Crash Course Biology: Heredity",u:YT("Crash Course Biology heredity")}
+ ],
+ slides:[
+  {k:"slides",t:"Lesson 1–2: Genetic variation (acquired vs inherited, continuous vs discontinuous)",u:GSLIDES("18gEHKEjLIIHfIRfSIp_9ba9ZrE-jT_ZGTsyDbasM_14")},
+  {k:"slides",t:"Lesson 3–5: Genetic variation – DNA",u:GSLIDES("1snazvxuuMWtTp4n4TAHQaR4qXFxnQ2-8ST9Yh8Yt8j8")},
+  {k:"slides",t:"Lesson 6–7: DNA replication",u:GSLIDES("1Jff3pG-9S-FK5gSwWaEhJ8thuOwtN1SiH3Nps7iA3FU")},
+  {k:"slides",t:"DNA replication and the cell cycle",u:GSLIDES("1AdH65_kLR8PajMJVVAR3z1FXPw2qoahWZRHuDkbqqC0")},
+  {k:"doc",t:"Genetics cue cards",u:GDOC("1qGkItbINW9ixFSvv75uORM8RODPG1pyfhEugftyzBxA")},
+  {k:"doc",t:"Genetic variation glossary – Yr 11 STP Diploma",u:GDOC("17JMjXDSOUl8GDH1fx8twEV_o2mvJfPz79lbDBmwp_jo")},
+  {k:"doc",t:"Genetics practice problems",u:GDOC("1s4dYvoqdUW12a4bgY8IYlbebCCKyBk7PdIxa5kMK7YU")},
+  {k:"doc",t:"Genetics practice problems – answers",u:GDOC("1jC9IzKwnmC_uttlUQ34hA5oKP2fGR-01G2sEUOL-Mgw")},
+  {k:"doc",t:"Mrs Cole’s Year 11 study booklet",u:GDOC("1Y_OWx-xggO18p0jsMmkVxSFjwVY6WBkB5MV1oC8YQHo")}
+ ]
+},
+/* -------------------------------- CELLS -------------------------------- */
+{
+ id:"cells", nav:"Cells", title:"Topic 2: Cells and cell processes",
+ blurb:"Levels of organisation, prokaryotic and eukaryotic cells, microscopy, cell transport, enzymes, respiration and photosynthesis.",
+ flashcards:[
+  ["Levels of organisation","Organelle → cell → tissue → organ → organ system → organism."],
+  ["Emergent properties","New functions that appear when parts interact, which no single part can do alone. Heart cells form tissue, tissues form the heart, and the heart pumps blood."],
+  ["Prokaryotic","Means ‘before nucleus’. Cells with no nucleus and no membrane-bound organelles, e.g. bacteria."],
+  ["Prokaryotic vs eukaryotic DNA","Prokaryotic DNA is circular, naked (no histones), free in the cytoplasm and may include plasmids. Eukaryotic DNA is linear, wrapped around histones and inside a nucleus."],
+  ["Nucleus","Contains the DNA and controls the cell’s activities by controlling which proteins are made."],
+  ["Cell membrane","Partially permeable; controls what enters and leaves the cell."],
+  ["Mitochondria","Site of aerobic respiration, releasing energy as ATP."],
+  ["Chloroplasts","Contain chlorophyll; site of photosynthesis in plant cells."],
+  ["Ribosomes","Site of protein synthesis. Found in both prokaryotes and eukaryotes."],
+  ["Cell wall","Made of cellulose in plants; gives support and stops the cell bursting."],
+  ["Diffusion","Net movement of particles from high to low concentration. Passive – no ATP needed."],
+  ["Osmosis","Net movement of water across a partially permeable membrane from high water concentration (dilute) to low water concentration (concentrated)."],
+  ["Active transport","Movement of particles against a concentration gradient (low to high) through carrier proteins using ATP."],
+  ["Enzyme","A protein that acts as a biological catalyst, speeding up reactions without being used up."],
+  ["Active site and specificity","The region of an enzyme that binds the substrate. Its shape is complementary to only one substrate (lock and key)."],
+  ["Denaturation","High temperature or extreme pH breaks bonds holding the enzyme’s shape, so the active site changes and the substrate no longer fits."],
+  ["Aerobic respiration","Glucose + oxygen → carbon dioxide + water + ATP (about 36–38 ATP). Occurs in mitochondria."],
+  ["Anaerobic respiration (animals)","Glucose → lactic acid + 2 ATP. Fast, no oxygen needed, but little ATP and lactic acid builds up."],
+  ["Photosynthesis","Carbon dioxide + water → (light, chlorophyll) → glucose + oxygen. Occurs in chloroplasts."],
+  ["Magnification formula","Magnification = image size ÷ actual size. Convert to the same units first (1 mm = 1000 µm)."]
+ ],
+ quiz:[
+  {q:"Which structure is found in BOTH prokaryotic and eukaryotic cells?",o:["Nucleus","Mitochondria","Ribosomes","Chloroplasts"],a:2,w:"All cells make proteins, so all cells have ribosomes."},
+  {q:"Which is the correct order of organisation from simplest to most complex?",o:["Cell, organelle, organ, tissue","Organelle, cell, tissue, organ","Tissue, cell, organ, system","Cell, tissue, organelle, organ"],a:1,w:"Organelle → cell → tissue → organ → organ system → organism."},
+  {q:"A red blood cell is placed in pure water. What happens?",o:["It shrinks","It stays the same","It swells and may burst","It becomes plasmolysed"],a:2,w:"Water moves into the cell by osmosis. Animal cells have no cell wall, so they can burst (lyse)."},
+  {q:"Which process requires ATP?",o:["Diffusion","Osmosis","Facilitated diffusion","Active transport"],a:3,w:"Active transport moves substances against the concentration gradient using carrier proteins and ATP."},
+  {q:"An enzyme is heated to 70 °C and stops working. This is because:",o:["The enzyme is used up","The active site changes shape","The substrate is destroyed","Particles stop moving"],a:1,w:"High temperature denatures the enzyme: the bonds holding its 3D shape break."},
+  {q:"An image of a cell is 30 mm long. The real cell is 0.06 mm. What is the magnification?",o:["×50","×180","×500","×5000"],a:2,w:"30 ÷ 0.06 = 500."},
+  {q:"Where does aerobic respiration mainly occur?",o:["Ribosome","Nucleus","Mitochondria","Chloroplast"],a:2,w:"The mitochondria are the site of aerobic respiration."},
+  {q:"Which is a product of anaerobic respiration in muscle cells?",o:["Lactic acid","Ethanol","Oxygen","Glucose"],a:0,w:"Animal cells produce lactic acid; yeast and plants produce ethanol and CO₂."},
+  {q:"Why are cells small?",o:["Small cells divide faster","A large surface area to volume ratio allows efficient diffusion","Small cells need no oxygen","Small cells have more DNA"],a:1,w:"As cells grow, volume increases faster than surface area, so diffusion can’t supply the whole cell quickly enough."},
+  {q:"Which factor will NOT increase the rate of photosynthesis (until another factor limits it)?",o:["More light","More carbon dioxide","Warmer temperature up to the optimum","More oxygen"],a:3,w:"Oxygen is a product, not a reactant."}
+ ],
+ short:[
+  ["Describe three differences between prokaryotic and eukaryotic cells.","Prokaryotes have no nucleus (DNA free in cytoplasm); eukaryotes have a nucleus. Prokaryotes lack membrane-bound organelles such as mitochondria. Prokaryotic DNA is circular with plasmids; eukaryotic DNA is linear with histones. Prokaryotes are much smaller and have smaller ribosomes.",3],
+  ["Explain how bacteria carry out respiration without mitochondria.","Respiratory enzymes are located on the cell membrane and in the cytoplasm, so the reactions of respiration occur there instead of in mitochondria.",2],
+  ["Define osmosis and predict what happens to a plant cell in a concentrated salt solution.","Osmosis is the net movement of water through a partially permeable membrane from a dilute to a more concentrated solution. In concentrated salt, water leaves the cell, the vacuole shrinks and the membrane pulls away from the cell wall (plasmolysis); the cell becomes flaccid.",3],
+  ["Explain the lock-and-key model of enzyme action.","The enzyme’s active site has a specific shape complementary to one substrate. The substrate fits into the active site forming an enzyme–substrate complex, the reaction occurs, and products are released. The enzyme is unchanged and can be reused.",2],
+  ["Compare aerobic and anaerobic respiration.","Both break down glucose to release ATP. Aerobic needs oxygen, makes CO₂ and water and releases 36–38 ATP slowly in mitochondria. Anaerobic needs no oxygen, makes lactic acid and only 2 ATP quickly in the cytoplasm.",3],
+  ["Write the word equation for photosynthesis and state where it occurs.","Carbon dioxide + water → glucose + oxygen (requires light energy and chlorophyll). It occurs in chloroplasts, mainly in palisade mesophyll cells of leaves.",2]
+ ],
+ extended:[
+  {q:"A student measures the rate of amylase activity at 10, 20, 30, 40, 50 and 60 °C. The rate rises to a peak at 40 °C and falls to zero at 60 °C. Discuss these results.",
+   a:"<p><b>10–40 °C:</b> As temperature rises, enzyme and substrate molecules gain kinetic energy and move faster, so there are more frequent successful collisions and more enzyme–substrate complexes form per second. The rate increases.</p><p><b>40 °C (optimum):</b> The rate is highest, with maximum collisions while the active site keeps its shape. Human enzymes typically work best close to 37 °C.</p><p><b>Above 40 °C:</b> Increased vibration breaks the weak bonds holding the enzyme’s 3D shape. The active site changes shape so the substrate no longer fits. At 60 °C all enzyme molecules are denatured and the rate is zero. Denaturation is permanent; cooling will not restore activity.</p><p><b>Validity:</b> Control pH, enzyme and substrate concentration and volume; repeat each temperature three times and calculate a mean.</p>",m:"A: describes trend · M: explains collisions and denaturation · E: links shape of active site to every part of the graph"},
+  {q:"Explain why single-celled organisms can rely on diffusion but large multicellular organisms need specialised exchange surfaces and transport systems.",
+   a:"<p>Small cells have a <b>large surface area to volume ratio</b>, so oxygen and nutrients can diffuse across the membrane and reach the centre of the cell quickly, and waste can leave quickly.</p><p>As an organism gets larger, volume increases faster than surface area (cubed vs squared). The SA:V ratio falls and diffusion distances become too long, so diffusion alone is too slow to meet the demands of every cell.</p><p>Multicellular organisms solve this with <b>specialised exchange surfaces</b> (e.g. alveoli, villi, root hairs) that have a large surface area, thin walls and a good blood supply to keep a steep concentration gradient, and with <b>transport systems</b> (the circulatory system) that carry materials close to every cell. These are examples of cells working together to produce emergent properties.</p>",m:"A: states SA:V · M: explains effect of size · E: links adaptations of exchange surfaces"}
+ ],
+ videos:[
+  {t:"Amoeba Sisters: Prokaryotic vs eukaryotic cells",u:YT("Amoeba Sisters prokaryotic vs eukaryotic cells")},
+  {t:"Amoeba Sisters: Biology of cells – organelles",u:YT("Amoeba Sisters intro to cells organelles")},
+  {t:"Amoeba Sisters: Cell transport",u:YT("Amoeba Sisters cell transport")},
+  {t:"Amoeba Sisters: Osmosis and water potential",u:YT("Amoeba Sisters osmosis")},
+  {t:"Amoeba Sisters: Enzymes",u:YT("Amoeba Sisters enzymes")},
+  {t:"Amoeba Sisters: Cellular respiration and photosynthesis",u:YT("Amoeba Sisters photosynthesis and cellular respiration")},
+  {t:"FuseSchool: Calculating magnification",u:YT("FuseSchool magnification calculation biology")}
+ ],
+ slides:[
+  {k:"slides",t:"Lessons 1–3: Cells and cell processes, magnification",u:GSLIDES("1n0YBbT1B0GzWMOXiuhx9bw2GCxNtdHFr4-nsSxRgvFI")},
+  {k:"slides",t:"Transport across cell membranes – slides and notes",u:GSLIDES("1fcUX45o6q7cYQLZAvUiuBBJdMsfWIVwRkThbPGKlxrk")},
+  {k:"slides",t:"2026 Cell processes – photosynthesis",u:GSLIDES("1HDswiPsT7iTnbq-QJBDjBYDdr8STdQyBNWFQBtByjPU")},
+  {k:"doc",t:"Cells learning objectives",u:GDOC("1bMYJA-3sLR2vqJhE7JsGgaO5Ty-kLnhPYE1hM4vUj3U")},
+  {k:"doc",t:"Cells cue cards",u:GDOC("1C5XmFvEV_xMdOmYvtT89krqI6SjkcMLBvXjiOn4f74k")},
+  {k:"doc",t:"Cell biology cue cards (printable PDF)",u:DRIVE("1KIER5HoW8BK67T78lly4rlntcxECntGm")},
+  {k:"doc",t:"Cells – study revision questions",u:GDOC("1mkskXwlbPDHDD2fsrgR-w1fmMaz5GLwPoA3E7-VPQgk")},
+  {k:"doc",t:"STP Diploma exam – cells revision questions",u:GDOC("1oZOijzXKwFWiFcel6bnJSQ3NtrCNDNT4MbSom372jWs")},
+  {k:"doc",t:"STP Diploma exam – cells revision answers",u:GDOC("1rSpNGbZk69Pvw8kO-cKh4xD2UBgrH9yWxHWWOhTkWZI")}
+ ]
+},
+/* -------------------------------- HUMAN RESPONSES -------------------------------- */
+{
+ id:"human-responses", nav:"Human Responses", title:"Topic 4: Human responses",
+ blurb:"The nervous system, neurons, reflex arcs, synapses, the senses, hormones and homeostasis including blood glucose and temperature control.",
+ flashcards:[
+  ["Central nervous system (CNS)","The brain and spinal cord. Processes information and coordinates responses."],
+  ["Peripheral nervous system (PNS)","All the nerves outside the brain and spinal cord, connecting the CNS to receptors and effectors."],
+  ["Sensory neuron","Carries electrical impulses from receptors to the CNS."],
+  ["Relay neuron","Found in the CNS; passes impulses from sensory to motor neurons."],
+  ["Motor neuron","Carries impulses from the CNS to effectors (muscles or glands)."],
+  ["Reflex arc","Stimulus → receptor → sensory neuron → relay neuron → motor neuron → effector → response."],
+  ["Reflex action","An automatic, rapid response that does not involve conscious thought, protecting the body from harm."],
+  ["Synapse","The junction between two neurons. An impulse triggers release of neurotransmitter from vesicles, which diffuses across the gap and binds to receptors on the next neuron."],
+  ["Hormone","A chemical messenger produced by an endocrine gland, carried in the blood to target organs."],
+  ["Nervous vs hormonal control","Nervous: electrical, very fast, short-lived, precise. Hormonal: chemical in blood, slower, longer-lasting, more widespread."],
+  ["Homeostasis","Maintaining a constant internal environment (e.g. temperature, blood glucose, water) within narrow limits."],
+  ["Negative feedback","A change from the set point is detected and a response reverses the change, returning conditions to normal."],
+  ["Insulin","Released by the pancreas when blood glucose is high. Makes cells take up glucose and the liver store it as glycogen."],
+  ["Glucagon","Released by the pancreas when blood glucose is low. Makes the liver convert glycogen back to glucose."],
+  ["Adrenaline","Released by the adrenal glands in danger. Increases heart rate, breathing and blood glucose: ‘fight or flight’."],
+  ["Responses to overheating","Vasodilation (more blood near skin surface), sweating (evaporation cools), hairs lie flat."],
+  ["Responses to cold","Vasoconstriction, shivering (muscle contractions release heat), hairs stand up, no sweating."],
+  ["Type 1 vs Type 2 diabetes","Type 1: pancreas makes little or no insulin (autoimmune). Type 2: body cells stop responding properly to insulin (insulin resistance), linked to lifestyle and genetics."]
+ ],
+ quiz:[
+  {q:"Which neuron carries impulses from the CNS to a muscle?",o:["Sensory","Relay","Motor","Receptor"],a:2,w:"Motor neurons carry impulses to effectors."},
+  {q:"Which is the correct order of a reflex arc?",o:["Receptor → motor → relay → sensory → effector","Receptor → sensory → relay → motor → effector","Effector → motor → relay → sensory → receptor","Sensory → receptor → relay → effector → motor"],a:1,w:"Stimulus is detected by the receptor, travels along the sensory, relay and motor neurons to the effector."},
+  {q:"How does an impulse cross a synapse?",o:["Electrical current jumps the gap","Neurotransmitter diffuses across the gap","Blood carries it","Hormones are released"],a:1,w:"Neurotransmitter is released from vesicles, diffuses across and binds receptors on the next neuron."},
+  {q:"Blood glucose rises after a meal. Which hormone is released?",o:["Glucagon","Adrenaline","Insulin","Thyroxine"],a:2,w:"The pancreas releases insulin to lower blood glucose."},
+  {q:"Which organ stores glucose as glycogen?",o:["Pancreas","Kidney","Liver","Brain"],a:2,w:"The liver (and muscles) convert glucose into glycogen for storage."},
+  {q:"On a hot day, blood vessels near the skin surface:",o:["Constrict","Dilate","Disappear","Stay the same"],a:1,w:"Vasodilation brings more blood to the surface so heat is lost by radiation."},
+  {q:"Which is a feature of hormonal control compared with nervous control?",o:["Faster","Uses electrical impulses","Longer-lasting effect","Only affects one muscle"],a:2,w:"Hormones are slower but their effects last longer."},
+  {q:"Type 2 diabetes is mainly caused by:",o:["Destruction of pancreatic cells by the immune system","Cells becoming resistant to insulin","Too much glucagon","A virus"],a:1,w:"Insulin resistance, strongly linked to excess body weight, inactivity, diet and family history."},
+  {q:"Negative feedback means:",o:["The change is made bigger","The change is reversed back to the set point","There is no response","The body stops working"],a:1,w:"The response opposes the change and restores normal levels."}
+ ],
+ short:[
+  ["Describe the role of the nervous system.","It detects changes (stimuli) using receptors, processes the information in the CNS and coordinates rapid responses by effectors, so body functions are regulated.",2],
+  ["Explain why reflex actions are important.","They are automatic and very fast because the impulse goes through a relay neuron in the spinal cord without conscious thought. This protects the body from harm, e.g. pulling a hand away from a hot object.",2],
+  ["Describe how a nerve impulse passes across a synapse.","The impulse reaches the end of the first neuron and vesicles release neurotransmitter into the gap. It diffuses across and binds to receptors on the next neuron, triggering a new impulse. Neurotransmitter is then broken down or reabsorbed.",3],
+  ["Compare nervous and hormonal communication (give three differences).","Nervous uses electrical impulses along neurons; hormonal uses chemicals in the blood. Nervous is very fast; hormonal slower. Nervous effects are short-lived and precise; hormonal effects last longer and can affect many organs.",3],
+  ["Explain how the body responds when body temperature drops.","Thermoreceptors detect the fall and the brain (hypothalamus) triggers: vasoconstriction to reduce heat loss from skin, shivering to generate heat by muscle contraction, hairs raised to trap air, and sweating stops. Temperature returns to around 37 °C by negative feedback.",3],
+  ["What is the normal blood glucose concentration and why must it be controlled?","About 90 mg per 100 ml of blood (roughly 5 mmol/L). Cells need a steady glucose supply for respiration; too low causes tiredness, confusion or coma; too high draws water out of cells by osmosis and damages blood vessels and organs.",2]
+ ],
+ extended:[
+  {q:"Discuss how blood glucose is regulated by negative feedback after a person eats a sugary meal and when they have not eaten for several hours.",
+   a:"<p><b>High blood glucose (after eating):</b> Carbohydrate is digested to glucose, which is absorbed into the blood, so concentration rises above the set point (~90 mg/100 ml). Cells in the pancreas detect the rise and release <b>insulin</b> into the blood. Insulin binds to receptors on body cells, making them take up more glucose for respiration, and causes the liver and muscles to convert glucose into <b>glycogen</b>. Blood glucose falls back to normal and insulin release stops.</p><p><b>Low blood glucose (fasting/exercise):</b> The pancreas detects the fall and releases <b>glucagon</b>. Glucagon acts on the liver, causing glycogen to be broken down into glucose, which is released into the blood. Blood glucose rises back to normal.</p><p><b>Why negative feedback:</b> In each case the response reverses the original change, keeping glucose within narrow limits so cells always have fuel for respiration while avoiding osmotic damage from high glucose. Insulin and glucagon are antagonistic hormones, giving fine control.</p><p><b>Link:</b> In Type 2 diabetes cells are resistant to insulin, so glucose stays high and the feedback loop breaks down.</p>",m:"A: names hormones and organ · M: explains each pathway · E: links both as negative feedback and to diabetes"},
+  {q:"A person touches a hot pan and pulls their hand away before they feel pain. Explain the pathway of this response and why it is faster than a conscious response.",
+   a:"<p>Heat (stimulus) is detected by <b>receptors</b> in the skin, which generate an electrical impulse in a <b>sensory neuron</b>. The impulse travels to the spinal cord, crosses a synapse to a <b>relay neuron</b>, then crosses another synapse to a <b>motor neuron</b>. The motor neuron carries the impulse to the <b>effector</b>, the biceps muscle, which contracts and pulls the hand away.</p><p>It is fast because the pathway passes through the spinal cord only; it does not need to go to the brain for processing, and there are few synapses to cross (synapses slow impulses because neurotransmitter must diffuse). Separately, impulses travel up the spinal cord to the brain, which is why pain is felt slightly after the hand moves.</p><p>The reflex is protective, minimising tissue damage.</p>",m:"A: names parts · M: describes the pathway in order · E: explains speed via fewer synapses and no brain processing"}
+ ],
+ videos:[
+  {t:"Amoeba Sisters: Nervous system",u:YT("Amoeba Sisters nervous system")},
+  {t:"Crash Course: The nervous system",u:YT("Crash Course anatomy nervous system part 1")},
+  {t:"FuseSchool: Reflex arc",u:YT("FuseSchool reflex arc")},
+  {t:"FuseSchool: Synapses",u:YT("FuseSchool synapse neurotransmitter")},
+  {t:"Amoeba Sisters: Homeostasis and negative feedback",u:YT("Amoeba Sisters homeostasis negative feedback")},
+  {t:"FuseSchool: Controlling blood glucose",u:YT("FuseSchool controlling blood glucose insulin glucagon")},
+  {t:"FuseSchool: Temperature control (thermoregulation)",u:YT("FuseSchool thermoregulation")}
+ ],
+ slides:[
+  {k:"slides",t:"Human responses lessons 1–2",u:GSLIDES("1lXj5RAAmBVy5USf_OLbnROXYLIVDarSiNVNlTH5qC7k")},
+  {k:"slides",t:"2026 Human responses – homeostasis",u:GSLIDES("1APJGatkgF44Xm2yEtV6T-0hd_9bqkLWUb7ht-yDR_DY")},
+  {k:"slides",t:"Blood glucose homeostasis (PowerPoint)",u:DRIVE("172-50W8KllbgMNi809NlisBPYORA7QPf")},
+  {k:"doc",t:"Human responses learning objectives",u:GDOC("1kGINOFZC9mZjK2BGVUOiX-krvjpdUU2xugavP_RSDTY")},
+  {k:"doc",t:"Mrs Cole’s Year 11 study booklet",u:GDOC("1Y_OWx-xggO18p0jsMmkVxSFjwVY6WBkB5MV1oC8YQHo")}
+ ]
+},
+/* -------------------------------- IMMUNITY -------------------------------- */
+{
+ id:"immunity", nav:"Immunity", title:"Topic 3: Immunity",
+ blurb:"Pathogens and transmission, controlling the spread of disease, the three lines of defence, antibodies, and active and passive immunity.",
+ flashcards:[
+  ["Pathogen","A disease-causing organism, e.g. bacteria, viruses, fungi and protozoa."],
+  ["Transmissible disease","A disease in which the pathogen can be passed from one host to another."],
+  ["Direct transmission","Contact between people: skin to skin, kissing, sexual contact, blood and body fluids, sharing needles."],
+  ["Indirect transmission","Via contaminated surfaces, food, water, animals (vectors) or droplets in the air."],
+  ["Controlling spread","Clean water supply, hygienic food preparation and good personal hygiene (hand washing) all stop pathogens reaching new hosts."],
+  ["Immunity","The body’s ability to resist infection. Two types: innate (born with, non-specific) and acquired (develops, specific)."],
+  ["First line of defence","Physical and chemical barriers that stop entry: skin, stomach acid and mucous membranes."],
+  ["Mucous membranes","Line the airways; sticky mucus traps pathogens and cilia sweep it away from the lungs."],
+  ["Second line of defence","Non-specific responses inside the body: inflammation and phagocytes."],
+  ["Phagocytosis","A phagocyte engulfs a pathogen into a vesicle and digests it with enzymes."],
+  ["Inflammation","Damaged tissue releases chemicals that widen blood vessels, causing redness, heat and swelling, and bringing phagocytes to the site."],
+  ["Third line of defence","The specific immune response: lymphocytes recognise a particular antigen and produce antibodies."],
+  ["Antigen","A molecule on the surface of a pathogen that the immune system recognises as foreign."],
+  ["Antibody","A Y-shaped protein made by lymphocytes with a shape complementary to one specific antigen; it binds to pathogens, clumping them and marking them for destruction."],
+  ["Memory cells","Lymphocytes that remain after an infection and make antibodies faster and in larger numbers on re-infection."],
+  ["Active immunity","Long-term immunity from making your own antibodies and memory cells, after infection or vaccination."],
+  ["Passive immunity","Short-term immunity from antibodies received from another source (across the placenta, in breast milk, or injected). No memory cells are made."],
+  ["Vaccination","Introducing a harmless (dead, weakened or part of) pathogen so the body makes antibodies and memory cells without getting the disease."],
+  ["Herd immunity","When most of a population is immune, the pathogen cannot spread easily, protecting those who cannot be vaccinated."],
+  ["Antibiotics","Medicines that kill bacteria. They do not work against viruses."]
+ ],
+ quiz:[
+  {q:"Which of these is NOT part of the first line of defence?",o:["Skin","Stomach acid","Phagocytes","Mucus"],a:2,w:"Phagocytes are part of the second line of defence."},
+  {q:"Catching influenza from a door handle is an example of:",o:["Direct transmission","Indirect transmission","Passive immunity","Inflammation"],a:1,w:"The pathogen is passed via a contaminated surface."},
+  {q:"What do lymphocytes produce that are specific to one antigen?",o:["Enzymes","Antibodies","Antibiotics","Hormones"],a:1,w:"Antibodies have a shape complementary to one antigen."},
+  {q:"A baby receives antibodies in breast milk. This is:",o:["Active immunity","Passive immunity","Innate immunity","Vaccination"],a:1,w:"The antibodies came from the mother; no memory cells are made, so it is short-term."},
+  {q:"Why does a second infection with the same pathogen usually not make you ill?",o:["The pathogen is weaker","Memory cells quickly make large numbers of antibodies","Skin becomes thicker","Antibiotics stay in the blood"],a:1,w:"The secondary response is faster and larger because of memory cells."},
+  {q:"Why should antibiotics NOT be used to treat a cold?",o:["Colds are caused by viruses","Colds are caused by fungi","Antibiotics only work on skin","Antibiotics cause colds"],a:0,w:"Antibiotics kill bacteria; overuse also leads to antibiotic resistance."},
+  {q:"What causes the redness and swelling of inflammation?",o:["Antibodies clumping","Blood vessels widening and becoming leakier","Skin cells dying","Stomach acid"],a:1,w:"Chemicals released by damaged cells cause vasodilation so more blood, fluid and phagocytes reach the area."},
+  {q:"How does a vaccine provide protection?",o:["It contains antibodies that last forever","It stimulates production of antibodies and memory cells","It kills all bacteria","It thickens mucus"],a:1,w:"Vaccines give active immunity by triggering a primary response without causing disease."},
+  {q:"Which measure best reduces the spread of a waterborne pathogen like cholera?",o:["Wearing masks","A clean, treated water supply","Insect repellent","Antibiotics for everyone"],a:1,w:"Treating and protecting water stops the pathogen reaching new hosts."}
+ ],
+ short:[
+  ["Define pathogen and give two examples of types of pathogens.","A pathogen is a disease-causing organism. Examples: bacteria (e.g. Salmonella), viruses (e.g. influenza), fungi (e.g. athlete’s foot), protozoa (e.g. malaria parasite).",2],
+  ["Explain how the skin and stomach acid protect the body.","Skin is a tough physical barrier of dead cells that pathogens can’t easily pass through, and it secretes oils/sweat that inhibit microbes. Stomach acid (HCl) has a low pH that kills pathogens swallowed in food and drink.",2],
+  ["Describe the process of phagocytosis.","A phagocyte detects and moves towards a pathogen, surrounds and engulfs it into a vesicle, then enzymes (from lysosomes) digest and destroy it.",3],
+  ["Explain how antibodies help destroy pathogens.","Each antibody has binding sites complementary to a specific antigen. They bind to the pathogen’s antigens, causing pathogens to clump together, neutralising toxins and marking them so phagocytes can engulf them more easily.",2],
+  ["Compare active and passive immunity.","Active: the body makes its own antibodies and memory cells (after infection or vaccination); slow to develop but long-lasting. Passive: antibodies are received from elsewhere (placenta, breast milk, injection); immediate but short-term because no memory cells are made.",3],
+  ["Explain the importance of hygienic food preparation.","Washing hands, cooking food thoroughly, keeping raw and cooked food apart and refrigerating food prevents pathogens such as Salmonella from growing or being transferred, so they don’t enter the body.",2]
+ ],
+ extended:[
+  {q:"Discuss how the body defends itself when a cut on the hand becomes infected with bacteria. Include all three lines of defence.",
+   a:"<p><b>First line:</b> Normally unbroken skin stops bacteria entering. The cut breaches this barrier. Blood clotting quickly seals the wound (a scab) to limit further entry.</p><p><b>Second line (non-specific):</b> Damaged cells release chemicals causing <b>inflammation</b>: blood vessels dilate and become leaky, so the area becomes red, hot and swollen, and more blood carries <b>phagocytes</b> to the site. Phagocytes engulf and digest bacteria by phagocytosis. This response is the same for any pathogen.</p><p><b>Third line (specific):</b> If bacteria survive, lymphocytes recognise their specific <b>antigens</b>. Lymphocytes with complementary receptors multiply and produce <b>antibodies</b> that bind to the antigens, clumping the bacteria and marking them for phagocytes. This takes several days the first time.</p><p><b>Memory:</b> Memory cells remain, so if the same bacteria enter again, antibodies are made faster and in greater numbers and the person may not become ill. The lines work together: barriers prevent entry, the non-specific response acts fast, and the specific response targets and remembers the pathogen.</p>",m:"A: names each line · M: explains how each works · E: links them and explains memory/secondary response"},
+  {q:"Discuss how vaccination programmes protect both individuals and the wider community. Use the ideas of memory cells and herd immunity.",
+   a:"<p>A vaccine contains a dead, weakened or partial form of a pathogen with its antigens. Lymphocytes recognise these antigens and produce specific antibodies and <b>memory cells</b> (a primary response) without the person getting the disease. If the real pathogen later enters, memory cells trigger a rapid, large <b>secondary response</b>, destroying the pathogen before symptoms develop. This is <b>active, long-term immunity</b>.</p><p>When a high percentage of people are vaccinated, the pathogen has few susceptible hosts, so chains of transmission are broken. This <b>herd immunity</b> protects people who cannot be vaccinated (newborns, people undergoing chemotherapy, those with allergies).</p><p>If vaccination rates fall, outbreaks can return, as seen with measles in New Zealand in 2019. Some vaccines need boosters because memory declines or the pathogen mutates (e.g. yearly flu vaccine).</p>",m:"A: describes vaccines · M: explains memory cells · E: links individual immunity to herd immunity with examples"}
+ ],
+ videos:[
+  {t:"Pathogens (video used in class slides)",u:"https://www.youtube.com/watch?v=WsZS4RCWpcE"},
+  {t:"Amoeba Sisters: Immune system",u:YT("Amoeba Sisters immune system")},
+  {t:"Kurzgesagt: The immune system explained",u:YT("Kurzgesagt immune system explained bacteria infection")},
+  {t:"Crash Course: Immune system",u:YT("Crash Course immune system innate")},
+  {t:"FuseSchool: How vaccines work",u:YT("FuseSchool how vaccines work")},
+  {t:"Amoeba Sisters: Viruses",u:YT("Amoeba Sisters viruses")},
+  {t:"FuseSchool: Active and passive immunity",u:YT("active and passive immunity GCSE biology")}
+ ],
+ slides:[
+  {k:"slides",t:"Immunity PowerPoint (full unit) – 2026",u:GSLIDES("1-Gxpe5yJWBuU_TuT4By4dLrIAc63G_OPGX5ASaY8poY")},
+  {k:"doc",t:"Immunity learning objectives",u:GDOC("1pg00EDHNqzunl4z9_Q-JQdQf5Y37dm_v65tAlvpbODk")},
+  {k:"doc",t:"Immunity cue cards (printable PDF)",u:DRIVE("17IPrFDmQphwrkmaE7z0cD6RfB8WNiRVa")},
+  {k:"doc",t:"Immunity: the 3 lines of defence in simple terms",u:GDOC("1TMRJmiQeBUB5iE4WpfjP1sH5_EbdNkO_K8CK_ZGH2Fo")},
+  {k:"doc",t:"Immunity practice problems",u:GDOC("1rQGepgaHGSsWHLN9Zm9CgloFi8dGRVpfm1BDBmg13Cc")},
+  {k:"doc",t:"Immunity practice problems – answers",u:GDOC("1SCi_oYBR_9vzO8tGtURMz-EmLQtREacZzu5zdfQOVyk")}
+ ]
+}
+];
+
+/* -------------------------------- PROJECTS -------------------------------- */
+const DISEASES = [
+ ["Cystic fibrosis","Autosomal recessive","CFTR gene, chromosome 7","Lungs, pancreas, digestive system","Thick sticky mucus, lung infections, poor growth","https://medlineplus.gov/genetics/condition/cystic-fibrosis/"],
+ ["Huntington’s disease","Autosomal dominant","HTT gene, chromosome 4","Brain (nervous system)","Uncontrolled movements, memory loss, mood changes; usually begins age 30–50","https://medlineplus.gov/genetics/condition/huntington-disease/"],
+ ["Sickle cell disease","Autosomal recessive (carriers have some malaria resistance)","HBB gene, chromosome 11","Blood, circulatory system","Sickle-shaped red blood cells, pain crises, anaemia","https://medlineplus.gov/genetics/condition/sickle-cell-disease/"],
+ ["Haemophilia A","X-linked recessive","F8 gene, X chromosome","Blood clotting","Prolonged bleeding, joint damage; mostly affects males","https://medlineplus.gov/genetics/condition/hemophilia/"],
+ ["Duchenne muscular dystrophy","X-linked recessive","DMD gene, X chromosome","Skeletal and heart muscle","Progressive muscle weakness from early childhood","https://medlineplus.gov/genetics/condition/duchenne-and-becker-muscular-dystrophy/"],
+ ["Down syndrome","Chromosomal (trisomy 21)","Extra copy of chromosome 21, usually from non-disjunction in meiosis","Whole body, development","Learning disability, heart defects, distinctive features","https://medlineplus.gov/genetics/condition/down-syndrome/"],
+ ["Phenylketonuria (PKU)","Autosomal recessive","PAH gene, chromosome 12","Brain (metabolism)","Build-up of phenylalanine; managed with a special diet; detected by newborn heel-prick test","https://medlineplus.gov/genetics/condition/phenylketonuria/"],
+ ["Marfan syndrome","Autosomal dominant","FBN1 gene, chromosome 15","Connective tissue, heart, eyes, skeleton","Tall, long limbs, heart (aorta) problems","https://medlineplus.gov/genetics/condition/marfan-syndrome/"],
+ ["Tay-Sachs disease","Autosomal recessive","HEXA gene, chromosome 15","Brain and nerve cells","Loss of motor skills in infancy","https://medlineplus.gov/genetics/condition/tay-sachs-disease/"],
+ ["Achondroplasia","Autosomal dominant (often a new mutation)","FGFR3 gene, chromosome 4","Bones (skeletal growth)","Short stature, shortened limbs","https://medlineplus.gov/genetics/condition/achondroplasia/"]
+];
+
+const PROJECTS = [
+{
+ id:"genetic-diseases", nav:"Genetic Diseases Project", title:"Research project: Genetic diseases",
+ blurb:"Choose a genetic disease, research it and present your findings as a written report.",
+ overview:`
+  <div class="prose">
+  <p>This research task asks you to investigate one genetic disease and write a report that applies your genetics learning to a real-world context. You will have two lessons in class and two weeks in total to complete it, working individually. You may use notes, devices and limited generative AI, but all sources (including AI) must be referenced.</p>
+  <h4>Your report must cover</h4>
+  <ul>
+   <li>The disease and its pattern of inheritance (autosomal dominant, autosomal recessive, X-linked or chromosomal) with a Punnett square and/or pedigree.</li>
+   <li>The gene or chromosome involved and how the mutation changes the protein produced.</li>
+   <li>Organs and organ systems affected, and the symptoms.</li>
+   <li>Treatments available and the prognosis.</li>
+   <li>Testing: carrier testing, prenatal testing and newborn screening.</li>
+   <li>Ethical, social or cultural issues raised by testing and treatment.</li>
+  </ul>
+  <h4>How to reach the top band</h4>
+  <p>Don’t just state facts. Explain <i>how</i> the faulty allele causes the symptoms (gene → protein → cell → organ), and discuss the implications for a family using probabilities from your Punnett square. Back up each point with evidence from a reliable source.</p>
+  </div>`,
+ sourcesHTML: () => `
+  <p class="prose">Ten diseases suitable for this task. Each link opens the MedlinePlus Genetics page (US National Library of Medicine), a reliable starting point.</p>
+  <div class="table-wrap"><table><thead><tr><th>Disease</th><th>Inheritance</th><th>Gene / chromosome</th><th>Systems affected</th><th>Key symptoms</th><th>Read more</th></tr></thead><tbody>
+  ${DISEASES.map(d=>`<tr><td><b>${d[0]}</b></td><td>${d[1]}</td><td>${d[2]}</td><td>${d[3]}</td><td>${d[4]}</td><td><a href="${d[5]}" target="_blank" rel="noopener">MedlinePlus</a></td></tr>`).join("")}
+  </tbody></table></div>
+  <h3>Other reliable places to research</h3>
+  <div class="links">
+   ${card("web","MedlinePlus Genetics – all conditions","https://medlineplus.gov/genetics/","Search any genetic condition")}
+   ${card("web","Genetic and Rare Diseases Information Center (NIH)","https://rarediseases.info.nih.gov/","Plain-language summaries of rare genetic conditions")}
+   ${card("web","Healthify (NZ health information)","https://healthify.nz/","Search your disease for a New Zealand perspective")}
+   ${card("web","PubMed – peer-reviewed research","https://pubmed.ncbi.nlm.nih.gov/","Search your disease name + ‘review’ for summary papers")}
+  </div>`,
+ videos:[
+  {t:"Amoeba Sisters: Pedigrees",u:YT("Amoeba Sisters pedigrees")},
+  {t:"Amoeba Sisters: Sex-linked traits",u:YT("Amoeba Sisters sex-linked traits")},
+  {t:"Cystic fibrosis explained",u:YT("cystic fibrosis explained genetics CFTR")},
+  {t:"Huntington’s disease explained",u:YT("Huntington's disease explained genetics")},
+  {t:"Sickle cell anaemia explained",u:YT("sickle cell anemia explained genetics")},
+  {t:"Down syndrome and non-disjunction",u:YT("non-disjunction trisomy 21 explained")},
+  {t:"Genetic testing and screening",u:YT("genetic testing carrier screening explained")}
+ ],
+ short:[
+  ["What is the difference between an autosomal and an X-linked disorder?","Autosomal disorders are caused by alleles on chromosomes 1–22 and affect males and females equally. X-linked disorders are caused by alleles on the X chromosome; recessive X-linked disorders are much more common in males because they have only one X chromosome.",2],
+  ["Why can a person with an autosomal dominant disease have an unaffected child?","If the affected parent is heterozygous (Hh) and the other is hh, each child has a 50% chance of inheriting h from both, giving hh – unaffected.",2],
+  ["Explain how a mutation can cause a genetic disease.","A change in the DNA base sequence changes the mRNA and so the amino acid sequence of the protein. The protein may fold into the wrong shape and not work (or not be made), so the cell, tissue or organ cannot function normally.",3],
+  ["Give two ethical issues raised by genetic testing.","Possible answers: privacy and who has access to results (e.g. insurers); anxiety from knowing about an untreatable disease such as Huntington’s; decisions about ending a pregnancy; family members learning information they didn’t want; cost and equity of access.",2]
+ ],
+ extended:[
+  {q:"Haemophilia A is X-linked recessive. A carrier woman (XᴴXʰ) has children with an unaffected man (XᴴY). Determine the probability of each outcome and explain why haemophilia is more common in males.",
+   a:"<p><b>Cross:</b> XᴴXʰ × XᴴY → XᴴXᴴ, XᴴY, XᴴXʰ, XʰY.</p><ul><li>Unaffected daughter: 25% (XᴴXᴴ)</li><li>Carrier daughter: 25% (XᴴXʰ)</li><li>Unaffected son: 25% (XᴴY)</li><li>Affected son: 25% (XʰY), which is 50% of sons</li></ul><p><b>Why males:</b> Males have only one X chromosome; the Y does not carry the F8 gene. A single recessive allele is therefore expressed. Females have two X chromosomes, so they need two recessive alleles to be affected; one normal allele produces enough clotting factor VIII, making them carriers instead.</p><p><b>Impact:</b> Affected males cannot produce functional factor VIII, so blood clots slowly. Treatment is regular injection of clotting factor. The family could use carrier testing and genetic counselling to understand the risks for each pregnancy.</p>",m:"A: correct cross · M: explains sex-linkage · E: links gene → protein → symptom and family implications"}
+ ],
+ files:[
+  {k:"doc",t:"2026 Genetic diseases research task (task sheet)",u:GDOC("1sEiCKoWrjWY-OqoP_r9t7XMEzKsQ1wD3gJMA1C19htI")},
+  {k:"doc",t:"Genetic disease final report – template",u:GDOC("1R6U4zEunJ5h-hy0rtGgl4B8RBnYC495PqS7nq2MVCvA")},
+  {k:"slides",t:"Lesson 1–2: Genetic variation and family tree inheritance",u:GSLIDES("18gEHKEjLIIHfIRfSIp_9ba9ZrE-jT_ZGTsyDbasM_14")}
+ ]
+},
+{
+ id:"diabetes", nav:"Diabetes Research", title:"Research paper: Type 2 diabetes and the sugar tax",
+ blurb:"Evaluate how effective a sugar tax could be in addressing the rise of Type 2 diabetes, applying your learning on homeostasis.",
+ overview:`
+  <div class="prose">
+  <p>In this task you research Type 2 diabetes and evaluate whether a sugar tax would be an effective way to address its rise. You present your findings as a written report over two weeks, working individually. Keep a research portfolio with references as you go; you will hand it in and then use it to write your report.</p>
+  <h4>Task 1: research portfolio</h4>
+  <ul>
+   <li>How a healthy body regulates blood glucose when it is high and low (negative feedback).</li>
+   <li>The role of insulin, how it interacts with cells, and the organs involved.</li>
+   <li>What Type 2 diabetes is and its risk factors.</li>
+   <li>Why Type 2 diabetes causes a breakdown in blood glucose regulation.</li>
+   <li>The implications for an individual’s health.</li>
+   <li>The implications for society: economic and medical.</li>
+   <li>What a sugar tax is, where it has been used and what the evidence shows.</li>
+  </ul>
+  <h4>Key biology in brief</h4>
+  <p>Normal blood glucose is about 90 mg/100 ml (about 5 mmol/L). When it rises, the pancreas releases insulin, which binds to receptors on body cells so they take up glucose, and makes the liver store glucose as glycogen. In Type 2 diabetes the cells become <b>insulin resistant</b>: insulin still binds, but cells respond poorly, so glucose stays in the blood. Over time the pancreas may also produce less insulin. Persistently high glucose damages blood vessels, leading to heart disease, kidney failure, nerve damage, poor wound healing and vision loss.</p>
+  <h4>The sugar tax question</h4>
+  <p>A sugar tax (sugar-sweetened beverage tax) raises the price of sugary drinks. Arguments for: reduced sugar intake, manufacturers reformulating drinks, revenue for health programmes. Arguments against: it targets only one food source, may affect low-income families more, and people may switch to other sugary foods. A strong report weighs both sides with evidence and makes a justified judgement for Aotearoa New Zealand, considering groups at higher risk such as Māori, Pacific and South Asian communities.</p>
+  </div>`,
+ sourcesHTML: () => `
+  <h3>New Zealand information</h3>
+  <div class="links">
+   ${card("web","Type 2 diabetes – Health New Zealand | Te Whatu Ora","https://info.health.nz/conditions-treatments/diabetes/type-2-diabetes","Official NZ health information")}
+   ${card("web","Understanding Type 2 diabetes – Diabetes NZ","https://www.diabetes.org.nz/understand-type-2-diabetes","Causes, management and living with T2D")}
+   ${card("web","Diabetes type 2 overview – Healthify","https://healthify.nz/diabetes-type-2-overview","Clear NZ overview with support services")}
+   ${card("web","About diabetes – Ministry of Health","https://www.health.govt.nz/our-work/diseases-and-conditions/diabetes/about-diabetes","NZ prevalence and background")}
+   ${card("paper","Early onset Type 2 diabetes in NZ – bpac^nz","https://bpac.org.nz/2018/diabetes.aspx","Rising rates in young people; groups most at risk")}
+  </div>
+  <h3>Research papers on sugar taxes</h3>
+  <div class="links">
+   ${card("paper","Dickson, Gehrsitz & Kemp (2023). Does a spoonful of sugar levy help the calories go down? Review of Economics and Statistics","https://pureportal.strath.ac.uk/en/publications/does-a-spoonful-of-sugar-levy-help-the-calories-go-down-an-analys-2/","UK levy: most drink brands cut sugar to avoid the tax")}
+   ${card("paper","Scarborough et al. (2025). Population health and health sector cost impacts of the UK Soft Drinks Industry Levy. Public Health Research","https://discovery.ucl.ac.uk/id/eprint/10218809","Modelling study of health and cost effects")}
+   ${card("paper","Evaluation of the UK Soft Drinks Industry Levy (study registration)","https://www.isrctn.com/ISRCTN18042742","Aims and design of the official UK evaluation")}
+   ${card("paper","UK Soft Drinks Industry Levy evaluation – MRC Epidemiology Unit, Cambridge","https://mrc-epid.cam.ac.uk/?p=14640","Overview of the evaluation programme")}
+   ${card("paper","Search PubMed: sugar-sweetened beverage tax systematic review","https://pubmed.ncbi.nlm.nih.gov/?term=sugar-sweetened+beverage+tax+systematic+review","Find reviews pooling evidence from many countries")}
+  </div>
+  <h3>Landmark diabetes studies</h3>
+  <div class="links">
+   ${card("paper","Diabetes Prevention Program (2002). Reduction in the incidence of Type 2 diabetes with lifestyle intervention or metformin. NEJM","https://doi.org/10.1056/NEJMoa012512","Lifestyle change cut the risk of developing T2D")}
+   ${card("paper","Lean et al. (2018). DiRECT trial: primary care-led weight management for remission of Type 2 diabetes. The Lancet","https://doi.org/10.1016/S0140-6736(17)33102-1","Weight loss put many participants into remission")}
+  </div>`,
+ videos:[
+  {t:"FuseSchool: Controlling blood glucose",u:YT("FuseSchool controlling blood glucose insulin glucagon")},
+  {t:"Type 2 diabetes explained (insulin resistance)",u:YT("type 2 diabetes explained insulin resistance animation")},
+  {t:"Type 1 vs Type 2 diabetes",u:YT("type 1 vs type 2 diabetes explained")},
+  {t:"Diabetes NZ: Living with Type 2 diabetes",u:YT("Diabetes New Zealand type 2 diabetes")},
+  {t:"Does a sugar tax work?",u:YT("does a sugar tax work explained")},
+  {t:"UK sugar tax: what happened",u:YT("UK sugar tax soft drinks industry levy results")},
+  {t:"Diabetes in New Zealand – news and documentaries",u:YT("type 2 diabetes New Zealand documentary")}
+ ],
+ short:[
+  ["Explain the role of insulin in a healthy person.","Insulin is released by the pancreas when blood glucose is high. It binds to receptors on body cells, causing them to take up glucose for respiration, and stimulates the liver and muscles to convert glucose to glycogen, lowering blood glucose.",2],
+  ["What is insulin resistance?","When body cells respond poorly to insulin, so glucose is not taken up effectively even though insulin is present. Blood glucose stays high. It is the main cause of Type 2 diabetes.",2],
+  ["List four risk factors for Type 2 diabetes.","Excess body weight (especially abdominal fat), physical inactivity, diet high in sugar and processed food, family history/genetics, increasing age, ethnicity (higher risk for Māori, Pacific and South Asian people), gestational diabetes.",2],
+  ["Give two health effects of long-term high blood glucose.","Damage to blood vessels leading to heart disease and stroke; kidney damage; nerve damage (especially feet) and poor wound healing that can lead to amputation; damage to the retina causing vision loss.",2],
+  ["Give one economic implication of Type 2 diabetes for society.","Healthcare costs for medication, monitoring, hospital admissions and treating complications (e.g. dialysis), plus lost productivity when people are unwell or die early.",1]
+ ],
+ extended:[
+  {q:"Evaluate whether a tax on sugary drinks is likely to reduce Type 2 diabetes in New Zealand. Link the biology of the disease to the evidence.",
+   a:"<p><b>Biology link:</b> Regularly consuming sugary drinks causes large rises in blood glucose and adds energy that is stored as fat. Excess body fat, especially around the abdomen, is linked to insulin resistance: cells respond poorly to insulin so blood glucose stays high. Reducing sugar intake should reduce weight gain and the demand on the pancreas, lowering the risk of developing Type 2 diabetes.</p><p><b>Evidence for:</b> After the UK introduced a tiered levy in 2018, most manufacturers reformulated drinks to below the tax threshold, reducing the sugar people consumed from soft drinks. Modelling studies predict small reductions in obesity and health costs. Revenue can fund health programmes such as school nutrition.</p><p><b>Evidence against/limitations:</b> Sugary drinks are only one source of sugar; people may switch to other sugary foods. Type 2 diabetes has many risk factors, including genetics, inactivity and age, that a tax does not address. Taxes can take a bigger share of income from low-income families (though these groups may also gain the most health benefit). Effects on diabetes rates take many years to measure.</p><p><b>Judgement:</b> A sugar tax is likely to help reduce sugar intake and contribute to lower diabetes risk, especially if designed to encourage reformulation, but it is not enough alone. It would be most effective as part of a wider strategy: education, access to affordable healthy food, physical activity and culturally appropriate support for groups at higher risk in Aotearoa.</p>",m:"A: describes T2D and tax · M: explains how reduced sugar affects insulin resistance · E: weighs evidence and justifies a judgement"}
+ ],
+ files:[
+  {k:"doc",t:"2026 Diabetes research task (task sheet)",u:DRIVE("14Au08dENxwu9d-Bx3AD9bKKKooqg2M1_")},
+  {k:"doc",t:"Diabetes portfolio to hand in",u:GDOC("1_SndtgwGmG0elSzSp8f0vD2fkk-HLpPRhgbfXVsBpPw")},
+  {k:"slides",t:"Blood glucose homeostasis (PowerPoint)",u:DRIVE("172-50W8KllbgMNi809NlisBPYORA7QPf")},
+  {k:"slides",t:"2026 Human responses – homeostasis",u:GSLIDES("1APJGatkgF44Xm2yEtV6T-0hd_9bqkLWUb7ht-yDR_DY")}
+ ]
+}
+];
+
+/* ====================================================================
+   RENDERING
+   ==================================================================== */
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const kindLabel = {slides:"Slides",doc:"Notes",video:"Video",paper:"Paper",web:"Website"};
+function card(k,t,u,s){return `<a class="link-card" href="${u}" target="_blank" rel="noopener"><span class="kind ${k}">${kindLabel[k]}</span><strong>${t}</strong>${s?`<span>${s}</span>`:""}</a>`}
+
+function qaList(items, startN){
+  return items.map((it,i)=>`<details class="qa"><summary><span class="n">${startN+i}.</span><span>${it[0]} ${it[2]?`<span class="marks">(${it[2]} marks)</span>`:""}</span><span class="reveal"></span></summary><div class="ans">${it[1]}</div></details>`).join("");
+}
+function extList(items, prefix){
+  return items.map((it,i)=>`<details class="qa"><summary><span class="n">${prefix}${i+1}</span><span>${it.q}</span><span class="reveal"></span></summary><div class="ans">${it.a}${it.m?`<p class="marks">Marking guide · ${it.m}</p>`:""}</div></details>`).join("");
+}
+function qaPanel(t){
+  let html = "";
+  if(t.quiz){
+    html += `<h3>Multiple choice</h3><div class="qa-group">` + t.quiz.map((q,i)=>`<details class="qa"><summary><span class="n">${i+1}.</span><span>${q.q}<br><span class="marks">${q.o.map((o,j)=>String.fromCharCode(65+j)+") "+o).join(" · ")}</span></span><span class="reveal"></span></summary><div class="ans"><b>${String.fromCharCode(65+q.a)}) ${q.o[q.a]}</b>. ${q.w}</div></details>`).join("") + `</div>`;
+  }
+  html += `<h3>Short answer</h3><div class="qa-group">${qaList(t.short,1)}</div>`;
+  html += `<h3>Extended response</h3><div class="qa-group">${extList(t.extended,"E")}</div>`;
+  return html;
+}
+
+function flashPanel(t){
+  return `<div class="fc-wrap" data-fc="${t.id}">
+   <div class="fc" tabindex="0" role="button" aria-label="Flashcard, press to flip">
+    <div class="fc-inner"><div class="fc-face fc-front"><div class="q"></div><span class="fc-hint">Click or press space to flip</span></div><div class="fc-face fc-back"><div class="a"></div></div></div>
+   </div>
+   <div class="fc-controls"><span class="count"></span>
+    <button class="small-btn" data-act="prev">Previous</button>
+    <button class="small-btn primary" data-act="next">Next</button>
+    <button class="small-btn" data-act="shuffle">Shuffle</button>
+   </div>
+   <p class="marks" style="margin-top:.8rem">Keyboard: ← → to move, space to flip.</p>
+  </div>`;
+}
+
+function quizPanel(t){
+  return `<p class="prose">Answer every question, then check your score. Explanations appear after marking.</p>
+  <form class="quiz" data-quiz="${t.id}" onsubmit="return false">
+   ${t.quiz.map((q,i)=>`<div class="quiz-q" data-i="${i}"><fieldset><legend>${i+1}. ${q.q}</legend>
+     ${q.o.map((o,j)=>`<label><input type="radio" name="${t.id}-q${i}" value="${j}"><span>${o}</span></label>`).join("")}
+   </fieldset><div class="why">${q.w}</div></div>`).join("")}
+   <div class="score" aria-live="polite"></div>
+   <div class="btn-row"><button type="button" class="btn btn-red" data-act="mark">Check answers</button><button type="button" class="btn btn-ghost" data-act="reset">Try again</button></div>
+  </form>`;
+}
+
+function linksPanel(list){
+  return `<div class="links">${list.map(l=>card(l.k||"video",l.t,l.u,l.s||"")).join("")}</div>`;
+}
+
+function tabsBlock(id, tabs){
+  return `<div class="tabs" role="tablist">${tabs.map((t,i)=>`<button role="tab" aria-selected="${i===0}" data-tab="${id}-${t[0]}">${t[1]}</button>`).join("")}</div>`+
+    tabs.map((t,i)=>`<div class="panel${i===0?" active":""}" id="${id}-${t[0]}" role="tabpanel">${t[2]}</div>`).join("");
+}
+
+function buildTopic(t){
+  return `<section class="page" id="page-${t.id}"><div class="page-head"><div><h2>${t.title}</h2><p>${t.blurb}</p></div></div>`+
+    tabsBlock(t.id,[
+      ["flash","Flashcards",flashPanel(t)],
+      ["test","Practice test",quizPanel(t)],
+      ["qa","Questions & answers",qaPanel(t)],
+      ["videos","Videos",linksPanel(t.videos)],
+      ["slides","Slides & notes",`<p class="prose">Mrs Cole’s class slides and notes. These open in Google Drive; sign in with your St Peter’s account.</p>`+linksPanel(t.slides)]
+    ])+`</section>`;
+}
+function buildProject(p){
+  return `<section class="page" id="page-${p.id}"><div class="page-head"><div><h2>${p.title}</h2><p>${p.blurb}</p></div></div>`+
+    tabsBlock(p.id,[
+      ["overview","Task overview",p.overview],
+      ["sources",p.id==="diabetes"?"Material & papers":"Example diseases",p.sourcesHTML()],
+      ["videos","Videos",linksPanel(p.videos)],
+      ["qa","Questions & answers",qaPanel(p)],
+      ["files","Task files",`<p class="prose">Task sheets, templates and slides from Google Drive (St Peter’s login needed).</p>`+linksPanel(p.files)]
+    ])+`</section>`;
+}
+function buildHome(){
+  const tile = (x,cls,meta) => `<a class="tile ${cls}" href="#${x.id}"><h3>${x.title.replace(/^Topic \d: /,"")}</h3><p>${x.blurb}</p><span class="meta">${meta}</span></a>`;
+  return `<section class="page" id="page-home">
+   <div class="page-head"><div><h2>What we cover</h2><p>Pick a topic. Every topic has flashcards, a practice test, questions with model answers, videos and the class slides.</p></div></div>
+   <div class="home-grid">
+    ${TOPICS.map(t=>tile(t,"",`${t.flashcards.length} flashcards · ${t.quiz.length}-question test · ${t.short.length+t.extended.length} written questions`)).join("")}
+    ${PROJECTS.map(p=>tile(p,"project","Research task · sources, videos and model answers")).join("")}
+   </div>
+   <div class="callout"><h4 style="margin-top:0">How to revise well</h4>
+    <p style="margin:0">Use the flashcards little and often until you can explain each one without flipping. Then sit the practice test without notes. Finally write out the short answer and extended questions before you check the model answers; Excellence answers link several ideas together and use the scenario given.</p></div>
+  </section>`;
+}
+
+/* ---------- build ---------- */
+const ALL = [{id:"home",nav:"Home"},...TOPICS,...PROJECTS];
+document.getElementById("mainnav").innerHTML = ALL.map(x=>`<a href="#${x.id}" data-nav="${x.id}">${x.nav}</a>`).join("");
+document.getElementById("main").innerHTML = buildHome()+TOPICS.map(buildTopic).join("")+PROJECTS.map(buildProject).join("");
+
+if(DIPLOMA_SITE_URL){const a=document.getElementById("diploma-link");a.href=DIPLOMA_SITE_URL;a.hidden=false;}
+
+/* ---------- routing ---------- */
+function route(){
+  const id = (location.hash||"#home").slice(1);
+  const target = ALL.some(x=>x.id===id) ? id : "home";
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+target));
+  document.querySelectorAll("nav.main a").forEach(a=>{ if(a.dataset.nav===target) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  document.getElementById("hero").style.display = target==="home" ? "" : "none";
+  document.getElementById("mainnav").classList.remove("open");
+  if(target!=="home") window.scrollTo({top:0});
+}
+window.addEventListener("hashchange",route);
+route();
+
+document.querySelector(".menu-btn").addEventListener("click",e=>{
+  const n=document.getElementById("mainnav"); n.classList.toggle("open");
+  e.currentTarget.setAttribute("aria-expanded",n.classList.contains("open"));
+});
+
+/* ---------- tabs ---------- */
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".tabs button"); if(!b) return;
+  const list=b.parentNode;
+  list.querySelectorAll("button").forEach(x=>x.setAttribute("aria-selected",x===b));
+  const page=list.parentNode;
+  page.querySelectorAll(":scope > .panel").forEach(p=>p.classList.toggle("active",p.id===b.dataset.tab));
+});
+
+/* ---------- flashcards ---------- */
+document.querySelectorAll("[data-fc]").forEach(wrap=>{
+  const t=TOPICS.find(x=>x.id===wrap.dataset.fc);
+  let deck=t.flashcards.map((c,i)=>i), i=0;
+  const fc=wrap.querySelector(".fc"), q=wrap.querySelector(".q"), a=wrap.querySelector(".a"), count=wrap.querySelector(".count");
+  const show=()=>{fc.classList.remove("flipped");const c=t.flashcards[deck[i]];q.textContent=c[0];a.textContent=c[1];count.textContent=`Card ${i+1} of ${deck.length}`;};
+  const go=d=>{i=(i+d+deck.length)%deck.length;show();};
+  fc.addEventListener("click",()=>fc.classList.toggle("flipped"));
+  fc.addEventListener("keydown",e=>{
+    if(e.key===" "||e.key==="Enter"){e.preventDefault();fc.classList.toggle("flipped");}
+    if(e.key==="ArrowRight")go(1); if(e.key==="ArrowLeft")go(-1);
+  });
+  wrap.querySelector("[data-act=next]").onclick=()=>go(1);
+  wrap.querySelector("[data-act=prev]").onclick=()=>go(-1);
+  wrap.querySelector("[data-act=shuffle]").onclick=()=>{deck.sort(()=>Math.random()-.5);i=0;show();};
+  show();
+});
+
+/* ---------- quizzes ---------- */
+document.querySelectorAll("[data-quiz]").forEach(form=>{
+  const t=TOPICS.find(x=>x.id===form.dataset.quiz);
+  const out=form.querySelector(".score");
+  form.querySelector("[data-act=mark]").onclick=()=>{
+    let score=0, answered=0;
+    t.quiz.forEach((q,i)=>{
+      const box=form.querySelector(`.quiz-q[data-i="${i}"]`);
+      const sel=form.querySelector(`input[name="${t.id}-q${i}"]:checked`);
+      box.classList.remove("right","wrong");
+      box.querySelectorAll("label").forEach((l,j)=>l.classList.toggle("correct-opt",j===q.a));
+      if(sel){answered++; if(+sel.value===q.a){score++;box.classList.add("right");} else box.classList.add("wrong");}
+      else box.classList.add("wrong");
+      box.classList.add("marked");
+    });
+    const pct=Math.round(score/t.quiz.length*100);
+    out.textContent=`You scored ${score} out of ${t.quiz.length} (${pct}%)`+(answered<t.quiz.length?` · ${t.quiz.length-answered} left blank`:"");
+    out.scrollIntoView({behavior:"smooth",block:"center"});
+  };
+  form.querySelector("[data-act=reset]").onclick=()=>{
+    form.reset(); out.textContent="";
+    form.querySelectorAll(".quiz-q").forEach(b=>{b.classList.remove("right","wrong","marked");b.querySelectorAll("label").forEach(l=>l.classList.remove("correct-opt"));});
+    window.scrollTo({top:form.getBoundingClientRect().top+scrollY-90,behavior:"smooth"});
+  };
+});
+</script>
+</body>
+</html>
